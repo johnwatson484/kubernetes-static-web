@@ -10,6 +10,8 @@ spec:
         emptyDir: {}
       - name: temp-fastcgi
         emptyDir: {}
+      - name: temp-uwsgi
+        emptyDir: {}
       containers:
       - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
 {{- end -}}
