@@ -14,6 +14,8 @@ spec:
         emptyDir: {}
       - name: temp-scgi
         emptyDir: {}
+      - name: temp-run
+        emptyDir: {}
       containers:
       - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
 {{- end -}}
