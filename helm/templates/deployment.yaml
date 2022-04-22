@@ -1,0 +1,8 @@
+{{- include "helm-library.deployment" (list . "kubernetes-static-web.deployment") -}}
+{{- define "kubernetes-static-web.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
+{{- end -}}

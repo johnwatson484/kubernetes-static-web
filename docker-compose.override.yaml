@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  kubernetes-static-web:
+    ports:
+      - "3000:80"
+    volumes:
+      - ./app:/usr/share/nginx/html

@@ -1,0 +1,8 @@
+{{- include "helm-library.ingress" (list . "kubernetes-static-web.ingress") -}}
+{{- define "kubernetes-static-web.ingress" -}}
+metadata:
+  annotations:
+  {{- if .Values.ingress.host }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer }}
+  {{- end }}
+{{- end -}}

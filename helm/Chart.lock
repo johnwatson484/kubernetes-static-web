@@ -1,0 +1,6 @@
+dependencies:
+- name: helm-library
+  repository: https://helm.lynxmagnus.com
+  version: 1.4.0
+digest: sha256:c0e73e5bc091a3ab24cf05970f730bc09dcd8422f5f5e77483e734fe992f3e5a
+generated: "2020-10-31T17:21:49.9694929Z"
