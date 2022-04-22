@@ -12,7 +12,8 @@ container:
   limitMemory: 40Mi
   limitCpu: 40m
   readOnlyRootFilesystem: false
-  allowPrivilegeEscalation: false
+  runAsNonRoot: false
+  runAsUser: 0
   port: 80
 
 ingress:
