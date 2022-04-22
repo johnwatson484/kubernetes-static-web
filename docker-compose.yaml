@@ -3,5 +3,6 @@ services:
   kubernetes-static-web:
     build:
       context: .
+      target: production
     image: kubernetes-static-web
     container_name: kubernetes-static-web
