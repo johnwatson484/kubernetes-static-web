@@ -1,7 +1,4 @@
 {{- define "kubernetes-static-web.container" -}}
-envFrom:
-- configMapRef:
-    name: {{ .Values.name }}
 ports:
 - containerPort: {{ .Values.container.port }}
   name: http
