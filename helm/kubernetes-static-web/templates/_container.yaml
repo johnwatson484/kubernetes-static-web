@@ -6,4 +6,6 @@ ports:
 volumeMounts:
 - mountPath: /var/cache/nginx/client_temp
   name: temp-client
+- mountPath: /var/cache/nginx/proxy_temp
+  name: temp-proxy
 {{- end -}}

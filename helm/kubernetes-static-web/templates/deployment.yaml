@@ -6,6 +6,8 @@ spec:
       volumes:
       - name: temp-client
         emptyDir: {}
+      - name: temp-proxy
+        emptyDir: {}
       containers:
       - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
 {{- end -}}
