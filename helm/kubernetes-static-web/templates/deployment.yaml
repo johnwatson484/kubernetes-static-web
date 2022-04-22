@@ -8,6 +8,8 @@ spec:
         emptyDir: {}
       - name: temp-proxy
         emptyDir: {}
+      - name: temp-fastcgi
+        emptyDir: {}
       containers:
       - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
 {{- end -}}
