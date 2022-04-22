@@ -12,4 +12,6 @@ volumeMounts:
   name: temp-fastcgi
 - mountPath: /var/cache/nginx/uwsgi_temp
   name: temp-uwsgi
+- mountPath: /var/cache/nginx/scgi_temp
+  name: temp-scgi
 {{- end -}}
