@@ -11,9 +11,6 @@ container:
   requestCpu: 40m
   limitMemory: 40Mi
   limitCpu: 40m
-  readOnlyRootFilesystem: false
-  runAsNonRoot: false
-  runAsUser: 0
   port: 80
 
 ingress:

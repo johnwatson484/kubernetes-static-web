@@ -3,4 +3,7 @@ ports:
 - containerPort: {{ .Values.container.port }}
   name: http
   protocol: TCP
+volumeMounts:
+- mountPath: /var/cache/nginx/client_temp
+  name: temp-client
 {{- end -}}

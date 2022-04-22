@@ -3,6 +3,9 @@
 spec:
   template:
     spec:
+      volumes:
+      - name: temp-client
+        emptyDir: {}
       containers:
       - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
 {{- end -}}
