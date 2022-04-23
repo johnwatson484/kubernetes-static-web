@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ quote .Values.name }}
-  labels: {{ include "kubernetes-test-app.labels" . | trimSuffix "\n" | indent 2 }}
+  labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 2 }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   minReadySeconds: {{ .Values.deployment.minReadySeconds }}
@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: {{ quote .Values.name }}
   template:
     metadata:
-      labels: {{ include "kubernetes-test-app.labels" . | trimSuffix "\n" | indent 6 }}
+      labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 6 }}
       annotations:
         redeployOnChange: {{ quote .Values.deployment.redeployOnChange }}
     spec:

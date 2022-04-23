@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ quote .Values.name }}
-  labels: {{ include "kubernetes-test-app.labels" . | trimSuffix "\n" | indent 2 }}
+  labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 2 }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
     {{- if .Values.ingress.host }}

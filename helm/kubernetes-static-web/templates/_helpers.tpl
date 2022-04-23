@@ -1,4 +1,4 @@
-{{- define "kubernetes-test-app.labels" }}
+{{- define "kubernetes-static-web.labels" }}
   app.kubernetes.io/name: {{ quote .Values.name }}
   app.kubernetes.io/instance: {{ .Release.Name }}
   app.kubernetes.io/managed-by: {{ .Release.Service }}
