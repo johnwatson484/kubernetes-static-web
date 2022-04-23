@@ -1,7 +1,21 @@
-{{- include "helm-library.deployment" (list . "kubernetes-static-web.deployment") -}}
-{{- define "kubernetes-static-web.deployment" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ quote .Values.name }}
+  labels: {{ include "kubernetes-test-app.labels" . | trimSuffix "\n" | indent 2 }}
 spec:
+  replicas: {{ .Values.deployment.replicas }}
+  minReadySeconds: {{ .Values.deployment.minReadySeconds }}
+  strategy: {}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ quote .Values.name }}
   template:
+    metadata:
+      labels: {{ include "kubernetes-test-app.labels" . | trimSuffix "\n" | indent 6 }}
+      annotations:
+        linkerd.io/inject: {{ quote .Values.deployment.linkerdInject }}
+        redeployOnChange: {{ quote .Values.deployment.redeployOnChange }}
     spec:
       volumes:
       - name: temp-client
@@ -16,6 +30,44 @@ spec:
         emptyDir: {}
       - name: temp-run
         emptyDir: {}
+      securityContext:
+        runAsUser: {{ .Values.deployment.runAsUser }}
+        runAsNonRoot: {{ .Values.deployment.runAsNonRoot }}
+      restartPolicy: {{ quote .Values.deployment.restartPolicy }}
       containers:
-      - {{ include "helm-library.container" (list . "kubernetes-static-web.container") }}
-{{- end -}}
+      - name: {{ quote .Values.name }}
+        image: {{ quote .Values.image }}
+        imagePullPolicy: {{ quote .Values.container.imagePullPolicy }}
+        securityContext:
+          readOnlyRootFilesystem: {{ .Values.container.readOnlyRootFilesystem }}
+          allowPrivilegeEscalation: {{ .Values.container.allowPrivilegeEscalation }}
+        env:
+        - name: NODE_ENV
+          value: {{ quote .Values.environment }}
+        - name: PORT
+          value: {{ quote .Values.container.port }}
+        ports:
+        - containerPort: {{ .Values.container.port }}
+          name: http
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/cache/nginx/client_temp
+          name: temp-client
+        - mountPath: /var/cache/nginx/proxy_temp
+          name: temp-proxy
+        - mountPath: /var/cache/nginx/fastcgi_temp
+          name: temp-fastcgi
+        - mountPath: /var/cache/nginx/uwsgi_temp
+          name: temp-uwsgi
+        - mountPath: /var/cache/nginx/scgi_temp
+          name: temp-scgi
+        - mountPath: /var/run
+          name: temp-run
+        resources:
+          requests:
+            memory: {{ quote .Values.container.requestMemory }}
+            cpu: {{ quote .Values.container.requestCpu }}
+          limits:
+            memory: {{ quote .Values.container.limitMemory }}
+            cpu: {{ quote .Values.container.limitCpu }}
+

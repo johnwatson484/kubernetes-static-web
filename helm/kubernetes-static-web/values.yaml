@@ -6,6 +6,8 @@ service:
   port: 80
 
 container:
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
   imagePullPolicy: Always
   requestMemory: 40Mi
   requestCpu: 40m
