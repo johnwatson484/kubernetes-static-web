@@ -9,7 +9,7 @@ spec:
   strategy: {}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ quote .Values.name }}
+      {{- include "kubernetes-static-web.labels" . | nindent 6 }}
   template:
     metadata:
       labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 6 }}

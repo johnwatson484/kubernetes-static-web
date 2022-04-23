@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations:
   name: {{ quote .Values.name }}
+  labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 2 }}
 spec:
   ports:
   - name: http
