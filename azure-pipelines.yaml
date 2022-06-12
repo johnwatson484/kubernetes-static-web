@@ -15,4 +15,3 @@ extends:
   parameters:
     repo: kubernetes-static-web
     framework: html
-    sonarcloud: false
