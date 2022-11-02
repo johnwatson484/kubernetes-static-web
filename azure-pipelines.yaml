@@ -14,7 +14,7 @@ resources:
 extends:
   template: build.yaml@templates
   parameters:
-    repo: kubernetes-static-web
+    name: kubernetes-static-web
     framework: html
     deploy: true
     namespace: kubernetes-static-web
