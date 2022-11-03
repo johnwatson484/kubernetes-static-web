@@ -8,8 +8,7 @@ spec:
   minReadySeconds: {{ .Values.deployment.minReadySeconds }}
   strategy: {}
   selector:
-    matchLabels:
-      {{- include "kubernetes-static-web.labels" . | nindent 6 }}
+    matchLabels: {{- include "kubernetes-static-web.labels" . | trimPrefix "\n" | trimSuffix "\n" | nindent 4 }}
   template:
     metadata:
       labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 6 }}
