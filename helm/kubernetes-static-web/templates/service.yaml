@@ -3,12 +3,11 @@ kind: Service
 metadata:
   annotations:
   name: {{ quote .Values.name }}
-  labels: {{ include "kubernetes-static-web.labels" . | trimSuffix "\n" | indent 2 }}
+  labels: {{- include "kubernetes-static-web.labels" . | nindent 4 }}
 spec:
   ports:
   - name: http
     port: {{ .Values.service.port }}
     targetPort: {{ .Values.container.port }}
-  selector:
-    app.kubernetes.io/name: {{ quote .Values.name }}
+  selector: {{- include "kubernetes-static-web.selector-labels" . | nindent 4 }}
   type: {{ quote .Values.service.type }}
