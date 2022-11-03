@@ -2,16 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ quote .Values.name }}
-  labels: {{- include "kubernetes-static-web.labels" . | nindent 4 }}
+  labels: 
+    {{- include "kubernetes-static-web.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   minReadySeconds: {{ .Values.deployment.minReadySeconds }}
   strategy: {}
   selector:
-    matchLabels: {{- include "kubernetes-static-web.selector-labels" . | nindent 6 }}
+    matchLabels: 
+      {{- include "kubernetes-static-web.selector-labels" . | nindent 6 }}
   template:
     metadata:
-      labels: {{ include "kubernetes-static-web.labels" . | indent 8 }}
+      labels: 
+        {{ include "kubernetes-static-web.labels" . | nindent 8 }}
       annotations:
         redeployOnChange: {{ quote .Values.deployment.redeployOnChange }}
     spec:
