@@ -16,7 +16,7 @@ container:
 
 ingress:
   class: nginx
-  host:
+  host: kubernetes.lynxmagnus.com
   certIssuer: letsencrypt
 
 deployment:

@@ -18,4 +18,3 @@ extends:
     framework: html
     deploy: true
     namespace: kubernetes-static-web
-    hasSecureHelmValuesFile: true
