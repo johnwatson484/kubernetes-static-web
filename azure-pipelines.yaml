@@ -16,5 +16,5 @@ extends:
   parameters:
     name: kubernetes-static-web
     framework: html
-    deploy: true
+    deploy: false
     namespace: kubernetes-static-web
